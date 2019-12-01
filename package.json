@@ -9,7 +9,6 @@
     "@fortawesome/react-fontawesome": "^0.1.7",
     "@zeit/next-css": "^1.0.1",
     "classnames": "^2.2.6",
-    "confetti-js": "^0.0.16",
     "next": "^9.1.4",
     "next-fonts": "^0.19.0",
     "prop-types": "^15.7.2",
