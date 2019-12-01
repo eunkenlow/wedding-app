@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600');
 
-/*
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 .hidden {
   display: none !important;
 }
@@ -608,8 +602,8 @@ input[type='radio'] + label {
   position: relative;
 }
 
-input[type='checkbox'] + label:before,
-input[type='radio'] + label:before {
+input[type='checkbox'] + label > .circle,
+input[type='radio'] + label > .circle {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -622,8 +616,13 @@ input[type='radio'] + label:before {
   font-weight: 900;
 }
 
-input[type='checkbox'] + label:before,
-input[type='radio'] + label:before {
+input[type='checkbox'] + label > .circle > .icon,
+input[type='radio'] + label > .circle > .icon {
+  display: none;
+}
+
+input[type='checkbox'] + label > .circle,
+input[type='radio'] + label > .circle {
   -moz-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
   -webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
@@ -645,26 +644,30 @@ input[type='radio'] + label:before {
   width: 1.65rem;
 }
 
-input[type='checkbox']:checked + label:before,
-input[type='radio']:checked + label:before {
+input[type='checkbox']:checked + label > .circle,
+input[type='radio']:checked + label > .circle {
   background: #ffffff !important;
   border-color: #ffffff !important;
   color: #1b1f22;
-  content: '\f00c';
 }
 
-input[type='checkbox']:focus + label:before,
-input[type='radio']:focus + label:before {
+input[type='checkbox']:checked + label > .circle > .icon,
+input[type='radio']:checked + label > .circle > .icon {
+  display: inline-block;
+}
+
+input[type='checkbox']:focus + label > .circle,
+input[type='radio']:focus + label > .circle {
   background: rgba(255, 255, 255, 0.075);
   border-color: #ffffff;
   box-shadow: 0 0 0 1px #ffffff;
 }
 
-input[type='checkbox'] + label:before {
+input[type='checkbox'] + label > .circle {
   border-radius: 4px;
 }
 
-input[type='radio'] + label:before {
+input[type='radio'] + label > .circle {
   border-radius: 100%;
 }
 
@@ -712,43 +715,6 @@ input[type='radio'] + label:before {
   border: 0;
   border-radius: 0;
   padding: 0;
-}
-
-/* Icon */
-
-.icon {
-  text-decoration: none;
-  border-bottom: none;
-  position: relative;
-}
-
-.icon:before {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  line-height: 1;
-  text-transform: none !important;
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
-}
-
-.icon > .label {
-  display: none;
-}
-
-.icon:before {
-  line-height: inherit;
-}
-
-.icon.solid:before {
-  font-weight: 900;
-}
-
-.icon.brands:before {
-  font-family: 'Font Awesome 5 Brands';
 }
 
 /* Image */
@@ -1005,41 +971,6 @@ ul.actions.fit.stacked {
   }
 }
 
-/* Icons */
-
-ul.icons {
-  cursor: default;
-  list-style: none;
-  padding-left: 0;
-}
-
-ul.icons li {
-  display: inline-block;
-  padding: 0 0.75em 0 0;
-}
-
-ul.icons li:last-child {
-  padding-right: 0;
-}
-
-ul.icons li a {
-  border-radius: 100%;
-  box-shadow: inset 0 0 0 1px #ffffff;
-  display: inline-block;
-  height: 2.25rem;
-  line-height: 2.25rem;
-  text-align: center;
-  width: 2.25rem;
-}
-
-ul.icons li a:hover {
-  background-color: rgba(255, 255, 255, 0.075);
-}
-
-ul.icons li a:active {
-  background-color: rgba(255, 255, 255, 0.175);
-}
-
 /* Table */
 
 .table-wrapper {
@@ -1225,6 +1156,7 @@ button {
   -ms-transform: scale(1);
   transform: scale(1);
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -1368,6 +1300,7 @@ button {
   background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
   max-width: 100%;
   text-align: center;
+  padding-top: 100px;
 }
 
 #header > * {
@@ -1377,17 +1310,6 @@ button {
   transition: opacity 0.325s ease-in-out;
   position: relative;
   margin-top: 3.5rem;
-}
-
-#header > *:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: calc(-3.5rem - 1px);
-  left: calc(50% - 1px);
-  width: 1px;
-  height: calc(3.5rem + 1px);
-  background: #ffffff;
 }
 
 #header > :first-child {
@@ -1451,13 +1373,10 @@ button {
   margin-bottom: 0;
   list-style: none;
   padding-left: 0;
-  border: solid 1px #ffffff;
-  border-radius: 4px;
 }
 
 #header nav ul li {
   padding-left: 0;
-  border-left: solid 1px #ffffff;
 }
 
 #header nav ul li:first-child {
@@ -1466,17 +1385,15 @@ button {
 
 #header nav ul li button {
   display: block;
-  min-width: 7.5rem;
-  height: 2.75rem;
-  line-height: 2.75rem;
-  padding: 0 1.25rem 0 1.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-size: 0.8rem;
   border-bottom: 0;
   box-shadow: none;
-  text-align: center;
-  width: 100%;
+  padding: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 72px;
+  width: 126px;
 }
 
 #header nav ul li a:hover {
@@ -1485,21 +1402,6 @@ button {
 
 #header nav ul li a:active {
   background-color: rgba(255, 255, 255, 0.175);
-}
-
-#header nav.use-middle:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: calc(50% - 1px);
-  width: 1px;
-  height: 100%;
-  background: #ffffff;
-}
-
-#header nav.use-middle ul li.is-middle {
-  border-left: 0;
 }
 
 .root.is-article-visible #header {
@@ -1587,22 +1489,15 @@ button {
 
   #header nav ul li {
     border-left: 0;
-    border-top: solid 1px #ffffff;
   }
 
   #header nav ul li:first-child {
     border-top: 0;
   }
 
-  #header nav ul li a {
-    height: 3rem;
-    line-height: 3rem;
-    min-width: 0;
-    width: 100%;
-  }
-
-  #header nav.use-middle:after {
-    display: none;
+  #header nav ul li button {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -1745,14 +1640,6 @@ button {
   text-align: center;
 }
 
-#footer .copyright {
-  letter-spacing: 0.2rem;
-  font-size: 0.6rem;
-  opacity: 0.75;
-  margin-bottom: 0;
-  text-transform: uppercase;
-}
-
 .root.is-article-visible #footer {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
@@ -1767,4 +1654,19 @@ button {
 
 .root.is-preload #footer {
   opacity: 0;
+}
+
+/* Custom */
+
+.image-button {
+  width: 150px;
+}
+
+.schedule-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.schedule-list > li {
+  padding-left: 0;
 }

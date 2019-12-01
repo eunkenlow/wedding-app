@@ -1,15 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Footer = () => {
+const Footer = ({ onConfettiClick, confetti }) => {
   return (
     <footer id="footer">
-      <p className="copyright">
-        &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-      </p>
+      <button type="button" onClick={() => onConfettiClick()}>
+        {confetti ? 'Stop' : 'Confetti!'}
+      </button>
     </footer>
   );
 };
 
-Footer.propTypes = {};
+Footer.defaultProps = {
+  confetti: false,
+};
+
+Footer.propTypes = {
+  onConfettiClick: PropTypes.func.isRequired,
+  confetti: PropTypes.bool,
+};
 
 export default Footer;

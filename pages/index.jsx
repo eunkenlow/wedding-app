@@ -1,63 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import classNames from 'classnames';
-import { config } from '@fortawesome/fontawesome-svg-core';
+import Confetti from 'react-confetti';
 // components
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Articles from '../components/Articles';
+import Footer from '../components/Footer';
 // styles
-// import '../css/fontawesome-all.min.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../public/css/main.css';
 
-config.autoAddCss = false;
-
-const delay = 325;
-
 const Index = () => {
-  const [preloaded, setPreloaded] = useState(false);
-  useEffect(() => {
-    setTimeout(() => setPreloaded(true), 100);
-  }, []);
-
   const [articleId, setArticleId] = useState(null);
-
   const [articleActive, setArticleActive] = useState(false);
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [confettiActive, setConfettiActive] = useState(0);
+
+  const handleResize = () => {
+    const { innerWidth, innerHeight } = window;
+    setHeight(innerHeight);
+    setWidth(innerWidth);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleClick = id => {
     if (id) {
       setArticleId(id);
-      setTimeout(() => {
-        setArticleActive(true);
-      }, delay);
+      setArticleActive(true);
     } else {
       setArticleActive(false);
-      setTimeout(() => {
-        setArticleId(null);
-      }, delay);
+      setArticleId(null);
     }
   };
 
+  const toggleConfetti = () => {
+    return !confettiActive ? setConfettiActive(150) : setConfettiActive(0);
+  };
+
   return (
-    <div
-      className={classNames('root', {
-        'is-preload': !preloaded,
-        'is-article-visible': !!articleId,
-      })}
-    >
+    <div>
       <Head>
-        <title>Dimension</title>
+        <title>James & Su-Zen’s Wedding</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <noscript>
           <link rel="stylesheet" href="/css/noscript.css" />
         </noscript>
       </Head>
+      <Confetti height={height} width={width} numberOfPieces={confettiActive} />
       <div id="wrapper">
         <Header onNavClick={handleClick} hidden={!!articleId} />
         <Articles displayId={articleId} active={articleActive} onClose={() => handleClick(null)} />
-        <Footer />
+        <Footer onConfettiClick={toggleConfetti} confetti={!!confettiActive} />
       </div>
       <div id="bg" />
     </div>
