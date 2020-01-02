@@ -1670,3 +1670,42 @@ button {
 .schedule-list > li {
   padding-left: 0;
 }
+
+.snake-grid {
+  position: relative;
+  background-color:	#dbc6ae;
+  z-index: 1;
+}
+
+.snake-grid .snake {
+  position: absolute;
+  z-index: 2;
+}
+
+.snake-grid .snake-food {
+  position: absolute;
+  background: #52c0a7;
+  z-index: 2;
+}
+
+.snake-grid .snake-score {
+  position: absolute;
+  font-size: 24px;
+  color: black;
+  padding-left: 10px;
+  z-index: 3;
+}
+
+.snake-grid .snake-screen {
+  border-radius: 10px;
+  background: rgba(39,62,84,0.82);
+  overflow: hidden;
+  height: 250px;
+  width: 300px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 5;
+  padding: 20px;
+  text-align: center;
+}

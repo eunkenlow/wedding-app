@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { isMobile } from "react-device-detect";
 // styles
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 // components
 import Article from './Article';
+import Snake from '../Snake';
 
 const Articles = ({ displayId, onClose, active }) => {
   return (
@@ -197,13 +199,7 @@ const Articles = ({ displayId, onClose, active }) => {
       <Article id="fun" active={active} displayId={displayId} onClose={onClose}>
         <>
           <h2 className="major">FUN</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim
-            arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi,
-            fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus
-            ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras
-            viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.
-          </p>
+          <Snake />
         </>
       </Article>
     </div>

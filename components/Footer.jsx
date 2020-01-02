@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Footer = ({ onConfettiClick, confetti }) => {
   return (
     <footer id="footer">
-      <button type="button" onClick={() => onConfettiClick()}>
+      <button type="button" className="primary" onClick={() => onConfettiClick()}>
         {confetti ? 'Stop' : 'Confetti!'}
       </button>
     </footer>

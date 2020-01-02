@@ -21,12 +21,6 @@ const Index = () => {
     setWidth(innerWidth);
   };
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const handleClick = id => {
     if (id) {
       setArticleId(id);
@@ -40,6 +34,12 @@ const Index = () => {
   const toggleConfetti = () => {
     return !confettiActive ? setConfettiActive(150) : setConfettiActive(0);
   };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div>
